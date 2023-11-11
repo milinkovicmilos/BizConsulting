@@ -1,0 +1,34 @@
+/* Mixins */
+@mixin width-center($width) {
+    width: $width;
+    margin: 0px auto;
+}
+@mixin margin-x($value) {
+    margin-left: $value;
+    margin-right: $value;
+}
+@mixin margin-y($value) {
+    margin-top: $value;
+    margin-bottom: $value;
+}
+@mixin padding-x($value) {
+    padding-left: $value;
+    padding-right: $value;
+}
+@mixin padding-y($value) {
+    padding-top: $value;
+    padding-bottom: $value;
+}
+@mixin flex($jc, $wrap : nowrap, $align : center) {
+    display: flex;
+    justify-content: $jc;
+    flex-wrap: $wrap;
+    align-items: $align;
+}
+/* Classes for overriding */
+.d-none {
+    display: none!important;
+}
+.d-block {
+    display: block!important;
+}
