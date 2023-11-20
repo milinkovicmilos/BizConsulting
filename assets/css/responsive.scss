@@ -1,16 +1,8 @@
 @import '_misc.scss';
 @media screen and (max-width: 768px) {
     header #header-container {
-        #hamburger {
+        #hamburger, #nav-block {
             display: block;
-        }
-        #nav-block ul{
-            flex-wrap: wrap;
-            flex-direction: column;
-            li {
-                @include padding-y(10px);
-                @include padding-x(20px);
-            }
         }
         #nav-list {
             display: none;

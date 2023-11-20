@@ -49,10 +49,10 @@ function formatLinkElement(link) {
 function openNav() {
     let navBlock = document.querySelector("#nav-block"); 
     if (!hamburgerMenuOpen) {
-        navBlock.classList.add("d-block");
+        navBlock.classList.add("hb-active");
         hamburgerMenuOpen = true;
     } else {
-        navBlock.classList.remove("d-block");
+        navBlock.classList.remove("hb-active");
         hamburgerMenuOpen = false;
     }
 }
@@ -63,4 +63,4 @@ formatNavList(navLinks);
 
 let hamburgerMenuOpen = false;
 let hamburger = document.querySelector("#hamburger");
-hamburger.addEventListener("click", openNav)
+hamburger.addEventListener("click", openNav);
