@@ -48,11 +48,14 @@ function formatLinkElement(link) {
 
 function openNav() {
     let navBlock = document.querySelector("#nav-block"); 
+    let hamburgerIcon = document.querySelector("#hamburger i");
     if (!hamburgerMenuOpen) {
         navBlock.classList.add("hb-active");
+        hamburgerIcon.classList.add("hb-open");
         hamburgerMenuOpen = true;
     } else {
         navBlock.classList.remove("hb-active");
+        hamburgerIcon.classList.remove("hb-open");
         hamburgerMenuOpen = false;
     }
 }
@@ -64,3 +67,10 @@ formatNavList(navLinks);
 let hamburgerMenuOpen = false;
 let hamburger = document.querySelector("#hamburger");
 hamburger.addEventListener("click", openNav);
+
+// Makes sure the hamburger menu closes after we click a link
+// in case the link leads to the same page that the user is already on
+let hamburgerLinks = document.querySelectorAll("#nav-block ul li a");
+for (const element of hamburgerLinks) {
+    element.addEventListener("click", openNav);
+}

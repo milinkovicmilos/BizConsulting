@@ -14,8 +14,18 @@
   width: 60vw !important;
 }
 
+.hb-open {
+  transform: rotateZ(90deg);
+}
+
 @media screen and (max-width: 768px) {
-  header #header-container #hamburger, header #header-container #nav-block {
+  header #header-container #hamburger {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  header #header-container #nav-block {
     display: block;
   }
   header #header-container #nav-list {

@@ -1,5 +1,6 @@
 /* Variables */
 $default-padding: 0.75rem;
+$hamburger-menu-width: 60vw;
 /* Mixins */
 @mixin width-center($width) {
     width: $width;
@@ -36,5 +37,8 @@ $default-padding: 0.75rem;
 }
 /* Custom classes */
 .hb-active {
-    width: 60vw!important;
+    width: $hamburger-menu-width!important;
+}
+.hb-open {
+    transform: rotateZ(90deg);
 }

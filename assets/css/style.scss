@@ -28,6 +28,12 @@ header {
         }
         #hamburger {
             display: none;
+            font-size: 1.6rem;
+            width: 2.2rem;
+            height: 2.2rem;
+            i {
+                transition: transform 0.5s;
+            }
         }
         #nav-block {
             display: none;
@@ -37,7 +43,7 @@ header {
             right: 0px;
             width: 0px;
             min-height: 100vh;
-            transition: width 1s;
+            transition: width 0.5s;
             background-color: gray;
             ul {
                 flex-wrap: wrap;

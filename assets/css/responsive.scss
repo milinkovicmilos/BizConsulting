@@ -1,7 +1,10 @@
 @import '_misc.scss';
 @media screen and (max-width: 768px) {
     header #header-container {
-        #hamburger, #nav-block {
+        #hamburger {
+            @include flex(center);
+        }
+        #nav-block {
             display: block;
         }
         #nav-list {
