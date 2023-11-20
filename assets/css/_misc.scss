@@ -1,5 +1,8 @@
 /* Variables */
 $default-padding: 0.75rem;
+// 2.125rem = h1 font-size
+$header-height: 2.125rem + $default-padding;
+$footer-height: 5rem + $default-padding;
 $hamburger-menu-width: 60vw;
 /* Mixins */
 @mixin width-center($width) {

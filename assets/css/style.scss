@@ -13,7 +13,6 @@ body {
     }
 }
 header {
-    width: 100%;
     background-color: lightgray;
     @include padding-y($default-padding);
     #header-container {
@@ -53,6 +52,40 @@ header {
                     @include padding-y($default-padding);
                 }
             } 
+        }
+    }
+}
+main {
+    min-height: calc(100vh - $header-height - $footer-height);
+    #form-wrapper {
+        @include width-center(40%);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: $default-padding;
+        row-gap: $default-padding;
+        .form-input {
+            input {
+                width: 100%;
+            }
+            &:nth-child(n + 3):nth-child(-n + 4) {
+                grid-column: 1 / 3;
+            }
+        }
+        #select-region {
+            @include margin-y($default-padding);
+            width: 50%;
+        }
+        .radio-wrapper {
+            display: flex;
+            .radio-holder {
+                @include flex(space-evenly, nowrap, center);
+                width: 50%;
+                input {
+                    width: auto;
+                    height: 20px;
+                    @include margin-x($default-padding);
+                }
+            }
         }
     }
 }

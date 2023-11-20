@@ -25,7 +25,43 @@
     <main>
         <div id="about-us"></div>
         <div id="testimonials"></div>
-        <div id="contact-us"></div>
+        <div id="contact-us">
+            <form action="#" method="get">
+                <div id="form-wrapper">
+                    <div class="form-input">
+                        <input type="text" name="input-first-name" id="input-first-name" placeholder="John"/>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" name="input-last-name" id="input-last-name" placeholder="Doe"/>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" name="input-email" id="input-email" placeholder="email@address.com"/>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" name="input-phone-number" id="input-phone-number" placeholder="Contact Number"/>
+                    </div>
+                    <div class="form-input">
+                        <label for="select-region">Region</label><br/>
+                        <select name="region" id="select-region">
+                            <option value="-1">Choose:</option>
+                            <option value="0">Europe</option>
+                            <option value="1">North America</option>
+                            <option value="2">Asia</option>
+                        </select>
+                    </div>
+                    <div class="form-input radio-wrapper">
+                        <div class="radio-holder">
+                            <label for="meet-type-person">In Person</label>
+                            <input type="radio" name="meet-type" id="meet-type-person" value="0" checked="checked"/>
+                        </div>
+                        <div class="radio-holder">
+                            <label for="meet-type-online">Online meeting</label>
+                            <input type="radio" name="meet-type" id="meet-type-online" value="1"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </main>
     <footer></footer>
     <script src="assets/js/main.js"></script>
