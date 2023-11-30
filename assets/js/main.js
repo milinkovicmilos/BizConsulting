@@ -65,12 +65,12 @@ const formErrors = [
     {
         "formElementID" : "input-first-name",
         "errorText" : "This field is required, please enter your name",
-        "regex" : "^$",
+        "regex" : ".+",
         "isVisible" : false
     },
     {
         "formElementID" : "input-first-name",
-        "errorText" : "Name has to start with capital letter and needs to have at least 3 letters",
+        "errorText" : "Please enter valid name starting with capital letter",
         "regex" : "[A-Z][a-z]{2,}([A-Z][a-z]{2,})*",
         "isVisible" : false
     },
@@ -82,7 +82,7 @@ const formErrors = [
     },
     {
         "formElementID" : "input-last-name",
-        "errorText" : "Last name has to start with capital letter and needs to have at least 3 letters",
+        "errorText" : "Please enter valid last name starting with capital letter",
         "regex" : "[A-Z][a-z]{2,}([A-Z][a-z]{2,})*",
         "isVisible" : false
     },
@@ -107,7 +107,7 @@ const formErrors = [
     {
         "formElementID" : "input-phone-number",
         "errorText" : "Please enter correct contact number (e.g. +381 12 3456789)",
-        "regex" : "^\\+[\d]{1,3} [\d]{1,3} [\d]{6,9}$",
+        "regex" : "^\\+[0-9]{1,3} [0-9]{1,3} [0-9]{6,9}$",
         "isVisible" : false
     },
     {
@@ -120,10 +120,42 @@ const formErrors = [
 
 //#endregion
 //#region Form Functions
-function showError(formErrorObj) {
-    let errorMessage = `<p class="error-text">${formErrorObj.errorText}</p>`;
-    $(errorMessage).insertAfter($(`#${formErrorObj.formElementID}`));
+function getFormErrorObjs(formID) {
+    let objs = [];
+    for (const element of formErrors) {
+        if (element.formElementID == formID) objs.push(element);
+    }
+    return objs;
 }
+
+function showError(formErrorObj) {
+    if (!formErrorObj.isVisible) {
+        let errorMessage = `<p class="error-text">${formErrorObj.errorText}</p>`;
+        $(errorMessage).insertAfter($(`#${formErrorObj.formElementID}`));
+        formErrorObj.isVisible = true;
+    }
+}
+
+function hideError(formErrorObj) {
+    if (formErrorObj.isVisible) {
+        $(`#${formErrorObj.formElementID} ~ p`).remove();
+        formErrorObj.isVisible = false;
+    }
+}
+
+function checkFormElement() {
+    let formErrorObjs = getFormErrorObjs(this.id);
+    for (const element of formErrorObjs) {
+        let regex = new RegExp(element.regex);
+        if (regex.test(this.value)) {
+            hideError(element);
+        } else {
+            showError(element);
+            return;
+        }
+    }
+}
+
 //#endregion
 
 window.addEventListener("load", function () {
@@ -138,4 +170,31 @@ window.addEventListener("load", function () {
     for (const element of hamburgerLinks) {
         element.addEventListener("click", openNav);
     }
+
+    // Select all form elements
+    let formElements = document.querySelectorAll('input[type="text"], #select-region');
+
+    // Add appropriate event listeners to them
+    for (const element of formElements) {
+        element.addEventListener("blur", checkFormElement);
+    }
+
+    // Make sure form is valid before submition
+    let form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Fires blur event on every form element so 
+        // that we can check if all form elements values are valid
+        for (const element of formElements) {
+            element.dispatchEvent(new Event("blur"));
+        }
+
+        // After running checkFormElement for every form
+        // element if no errors are present we can submit the form
+        for (const element of formErrors) {
+            if (element.isVisible) return;
+        }
+        form.submit();
+    });
 });

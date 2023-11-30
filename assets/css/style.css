@@ -142,13 +142,17 @@ main #form-wrapper #select-region {
 }
 main #form-wrapper .radio-wrapper {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }
 main #form-wrapper .radio-wrapper .radio-holder {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: center;
-  width: 50%;
+  width: 60%;
+  margin: 0px auto;
 }
 main #form-wrapper .radio-wrapper .radio-holder input {
   width: auto;
