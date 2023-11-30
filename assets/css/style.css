@@ -99,7 +99,10 @@ main #form-wrapper {
   grid-template-columns: repeat(2, 1fr);
   -moz-column-gap: 0.75rem;
        column-gap: 0.75rem;
-  row-gap: 0.75rem;
+  row-gap: 0.9rem;
+}
+main #form-wrapper .form-input {
+  position: relative;
 }
 main #form-wrapper .form-input input {
   margin-top: 0.75rem;
@@ -121,6 +124,12 @@ main #form-wrapper .form-input input[type=text] {
   padding-bottom: 0.375rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+main #form-wrapper .form-input .error-text {
+  position: absolute;
+  top: 65px;
+  font-size: 0.8rem;
+  color: red;
 }
 main #form-wrapper #select-region {
   margin-top: 0.75rem;

@@ -63,8 +63,9 @@ main {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         column-gap: $default-padding;
-        row-gap: $default-padding;
+        row-gap: $default-padding * 1.2;
         .form-input {
+            position: relative;
             input {
                 @include margin-y($default-padding);
                 width: 100%;
@@ -80,6 +81,12 @@ main {
             input[type="text"] {
                 @include padding-y($default-padding/2);
                 @include padding-x($default-padding);
+            }
+            .error-text {
+                position: absolute;
+                top: 65px;
+                font-size: 0.8rem;
+                color: red;
             }
         }
         #select-region {

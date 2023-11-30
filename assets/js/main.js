@@ -1,7 +1,6 @@
-//#region Data
-
+//#region Navbar Data
 // List of objects containing link information
-let navLinks = [
+const navLinks = [
     {
         "title": "Home",
         "url": "index.html"
@@ -25,8 +24,7 @@ let navLinks = [
 ];
 
 //#endregion
-//#region Functions
-
+//#region Navbar Functions
 function formatNavList(links) {
     // Builds HTML elements for nav menus
     let navList = document.querySelector("#nav-list");
@@ -46,6 +44,7 @@ function formatLinkElement(link) {
     return element;
 }
 
+let hamburgerMenuOpen = false;
 function openNav() {
     let navBlock = document.querySelector("#nav-block"); 
     let hamburgerIcon = document.querySelector("#hamburger i");
@@ -61,16 +60,82 @@ function openNav() {
 }
 
 //#endregion
+//#region Form Error Data
+const formErrors = [
+    {
+        "formElementID" : "input-first-name",
+        "errorText" : "This field is required, please enter your name",
+        "regex" : "^$",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-first-name",
+        "errorText" : "Name has to start with capital letter and needs to have at least 3 letters",
+        "regex" : "[A-Z][a-z]{2,}([A-Z][a-z]{2,})*",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-last-name",
+        "errorText" : "This field is required, please enter your last name",
+        "regex" : ".+",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-last-name",
+        "errorText" : "Last name has to start with capital letter and needs to have at least 3 letters",
+        "regex" : "[A-Z][a-z]{2,}([A-Z][a-z]{2,})*",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-email",
+        "errorText" : "This field is required, please enter your e-mail address",
+        "regex" : ".+",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-email",
+        "errorText" : "Please enter correct e-mail address (e.g. johndoe@gmail.com)",
+        "regex" : "^([a-z]+\.?)+@[a-z]{2,}\.[a-z]{2,}$",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-phone-number",
+        "errorText" : "This field is required, please enter contact phone number",
+        "regex" : ".+",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "input-phone-number",
+        "errorText" : "Please enter correct contact number (e.g. +381 12 3456789)",
+        "regex" : "^\\+[\d]{1,3} [\d]{1,3} [\d]{6,9}$",
+        "isVisible" : false
+    },
+    {
+        "formElementID" : "select-region",
+        "errorText" : "Please select your region",
+        "regex" : "^(?!-1$)",
+        "isVisible" : false
+    }
+];
 
-formatNavList(navLinks);
-
-let hamburgerMenuOpen = false;
-let hamburger = document.querySelector("#hamburger");
-hamburger.addEventListener("click", openNav);
-
-// Makes sure the hamburger menu closes after we click a link
-// in case the link leads to the same page that the user is already on
-let hamburgerLinks = document.querySelectorAll("#nav-block ul li a");
-for (const element of hamburgerLinks) {
-    element.addEventListener("click", openNav);
+//#endregion
+//#region Form Functions
+function showError(formErrorObj) {
+    let errorMessage = `<p class="error-text">${formErrorObj.errorText}</p>`;
+    $(errorMessage).insertAfter($(`#${formErrorObj.formElementID}`));
 }
+//#endregion
+
+window.addEventListener("load", function () {
+    formatNavList(navLinks);
+    
+    let hamburger = document.querySelector("#hamburger");
+    hamburger.addEventListener("click", openNav);
+    
+    // Makes sure the hamburger menu closes after we click a link
+    // in case the link leads to the same page that the user is already on
+    let hamburgerLinks = document.querySelectorAll("#nav-block ul li a");
+    for (const element of hamburgerLinks) {
+        element.addEventListener("click", openNav);
+    }
+});
