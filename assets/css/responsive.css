@@ -49,6 +49,12 @@
   font-size: 2rem;
   position: absolute;
 }
+.slider .flex-between {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .slider-text-wrapper {
   position: absolute;
@@ -71,13 +77,31 @@
 }
 
 .slider-btn-left {
-  top: 50%;
-  left: 20px;
+  left: 0px;
 }
 
 .slider-btn-right {
-  top: 50%;
-  right: 20px;
+  right: 0px;
+}
+
+.slider-btn-left, .slider-btn-right {
+  top: 0px;
+  height: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.slider-indicator {
+  width: 50px;
+  height: 3px;
+  background-color: whitesmoke;
+  transition: background-color 1s;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.slider-indicator-inactive {
+  background-color: gray;
 }
 
 @media screen and (max-width: 768px) {

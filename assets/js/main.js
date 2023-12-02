@@ -184,27 +184,40 @@ function checkFormElement() {
 let slides = [];
 let currentSlide = 0;
 const sliderTimer = 5000;
+let sliderTimeout;
 function previousSlide() {
     if (currentSlide == 0) {
         $(slides[currentSlide]).hide();
+        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
         currentSlide = slides.length - 1;
         $(slides[currentSlide]).fadeIn("slow");
+        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
     } else {
         $(slides[currentSlide]).hide();
+        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
         currentSlide--;
         $(slides[currentSlide]).fadeIn("slow");
+        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
     }
+    clearTimeout(sliderTimeout);
+    sliderTimeout = setTimeout(nextSlide, sliderTimer);
 }
 function nextSlide() {
     if (currentSlide == slides.length - 1) {
         $(slides[currentSlide]).hide();
+        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
         currentSlide = 0;
         $(slides[currentSlide]).fadeIn("slow");
+        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
     } else {
         $(slides[currentSlide]).hide();
+        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
         currentSlide++;
         $(slides[currentSlide]).fadeIn("slow");
+        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
     }
+    clearTimeout(sliderTimeout);
+    sliderTimeout = setTimeout(nextSlide, sliderTimer);
 }
 function initializeSlider() {
     // Making sure inactive slides can't be seen
@@ -213,14 +226,25 @@ function initializeSlider() {
         $(slides[i]).hide();
     }
 
-    // Initializing what buttons do
+    // Adding button event listeners
     let buttonLeft = $(".slider-btn-left");
     buttonLeft.click(previousSlide);
 
     let buttonRight = $(".slider-btn-right");
     buttonRight.click(nextSlide);
 
-    setInterval(nextSlide, sliderTimer);
+    // Adding slide indicators
+    let container = document.createElement("div");
+    container.classList.add("flex-between");
+    for (let i = 0; i < slides.length; i++) {
+        let element = document.createElement("div");
+        element.classList.add("slider-indicator");
+        if (i > 0) element.classList.add("slider-indicator-inactive");
+        container.appendChild(element);
+    }
+    $('.slider').append(container);
+
+    sliderTimeout = setTimeout(nextSlide, sliderTimer);
 }
 //#endregion
 
