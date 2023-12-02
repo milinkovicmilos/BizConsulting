@@ -38,6 +38,10 @@ $hamburger-menu-width: 60vw;
     display: block!important;
 }
 /* Custom classes */
+.stop-scroll {
+    height: 100%;
+    overflow: hidden;
+}
 .flex-between {
     @include flex(space-between);
 }

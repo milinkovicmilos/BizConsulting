@@ -49,10 +49,12 @@ function openNav() {
     let navBlock = document.querySelector("#nav-block"); 
     let hamburgerIcon = document.querySelector("#hamburger i");
     if (!hamburgerMenuOpen) {
+        $("body").addClass("stop-scroll");
         navBlock.classList.add("hb-active");
         hamburgerIcon.classList.add("hb-open");
         hamburgerMenuOpen = true;
     } else {
+        $("body").removeClass("stop-scroll");
         navBlock.classList.remove("hb-active");
         hamburgerIcon.classList.remove("hb-open");
         hamburgerMenuOpen = false;

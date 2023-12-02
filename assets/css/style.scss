@@ -17,6 +17,8 @@ body {
     }
 }
 header {
+    position: relative;
+    z-index: 2;
     background-color: lightgray;
     @include padding-y($default-padding);
     #header-container {
@@ -46,12 +48,12 @@ header {
         #nav-block {
             display: none;
             padding-top: 10px;
-            position: fixed;
-            top: 3.875rem;
-            right: 0px;
+            position: absolute;
             z-index: 1;
+            top: $header-height;
+            right: 0px;
             width: 0px;
-            min-height: 100vh;
+            min-height: 100vh - $header-height;
             transition: width 0.5s;
             background-color: gray;
             ul {

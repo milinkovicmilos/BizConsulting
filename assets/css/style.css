@@ -10,6 +10,11 @@
 }
 
 /* Custom classes */
+.stop-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -96,6 +101,8 @@ body ul {
 }
 
 header {
+  position: relative;
+  z-index: 2;
   background-color: lightgray;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -136,10 +143,10 @@ header #header-container #hamburger i {
 header #header-container #nav-block {
   display: none;
   padding-top: 10px;
-  position: fixed;
-  top: 3.875rem;
-  right: 0px;
+  position: absolute;
   z-index: 1;
+  top: 4.5rem;
+  right: 0px;
   width: 0px;
   min-height: 100vh;
   transition: width 0.5s;
