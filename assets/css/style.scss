@@ -22,6 +22,12 @@ header {
     #header-container {
         @include width-center(80%);
         @include flex(space-between);
+        #logo-wrapper {
+            height: $header-height - $default-padding * 2;
+            img {
+                max-height: 100%
+            }
+        }
         ul {
             @include flex(flex-end);
             li {

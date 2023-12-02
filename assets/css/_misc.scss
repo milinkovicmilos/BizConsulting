@@ -1,7 +1,6 @@
 /* Variables */
 $default-padding: 0.75rem;
-// 2.375 = logo holder size
-$header-height: 2.375rem + $default-padding * 2;
+$header-height: 3rem + $default-padding * 2;
 $footer-height: 5rem + $default-padding;
 $hamburger-menu-width: 60vw;
 /* Mixins */

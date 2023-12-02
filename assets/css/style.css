@@ -108,6 +108,12 @@ header #header-container {
   flex-wrap: nowrap;
   align-items: center;
 }
+header #header-container #logo-wrapper {
+  height: 3rem;
+}
+header #header-container #logo-wrapper img {
+  max-height: 100%;
+}
 header #header-container ul {
   display: flex;
   justify-content: flex-end;
@@ -150,7 +156,7 @@ header #header-container #nav-block ul li {
 }
 
 main {
-  min-height: calc(100vh - 3.875rem - 5.75rem);
+  min-height: calc(100vh - 4.5rem - 5.75rem);
 }
 main #form-wrapper {
   width: 40%;
