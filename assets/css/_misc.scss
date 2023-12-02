@@ -1,7 +1,7 @@
 /* Variables */
 $default-padding: 0.75rem;
-// 2.125rem = h1 font-size
-$header-height: 2.125rem + $default-padding;
+// 2.375 = logo holder size
+$header-height: 2.375rem + $default-padding * 2;
 $footer-height: 5rem + $default-padding;
 $hamburger-menu-width: 60vw;
 /* Mixins */
@@ -44,4 +44,7 @@ $hamburger-menu-width: 60vw;
 }
 .hb-open {
     transform: rotateZ(90deg);
+}
+.flex-between {
+    @include flex(space-between);
 }

@@ -12,6 +12,9 @@ body {
     a {
         text-decoration: none;
     }
+    ul {
+        list-style-type: none;
+    }
 }
 header {
     background-color: lightgray;
@@ -20,7 +23,6 @@ header {
         @include width-center(80%);
         @include flex(space-between);
         ul {
-            list-style-type: none;
             @include flex(flex-end);
             li {
                 @include padding-x(20px);
@@ -41,6 +43,7 @@ header {
             position: fixed;
             top: 3.875rem;
             right: 0px;
+            z-index: 1;
             width: 0px;
             min-height: 100vh;
             transition: width 0.5s;
@@ -106,6 +109,40 @@ main {
                     @include margin-x($default-padding);
                 }
             }
+        }
+    }
+}
+footer {
+    background-color: lightgray;
+    // padding-top: $default-padding;
+    min-height: $footer-height;
+    i {
+        font-size: 1.5rem;
+    }
+    &> .flex-between {
+        margin: 0px auto;
+        width: 80%;
+    }
+    #socials {
+        width: 25%;
+        #socials-wrapper {
+            width: 200px;
+            margin: 0px auto;
+            @include flex(space-evenly);
+        }
+    }
+    #info {
+        width: 25%;
+        font-size: 0.8rem;
+    }
+    #files {
+        width: 100px;
+    }
+    #footer-nav {
+        width: 40%;
+        @include padding-y($default-padding * 1.5);
+        ul {
+            @include flex(space-between);
         }
     }
 }

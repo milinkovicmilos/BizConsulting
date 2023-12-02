@@ -18,6 +18,13 @@
   transform: rotateZ(90deg);
 }
 
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -34,6 +41,9 @@ body {
 body a {
   text-decoration: none;
 }
+body ul {
+  list-style-type: none;
+}
 
 header {
   background-color: lightgray;
@@ -49,7 +59,6 @@ header #header-container {
   align-items: center;
 }
 header #header-container ul {
-  list-style-type: none;
   display: flex;
   justify-content: flex-end;
   flex-wrap: nowrap;
@@ -74,6 +83,7 @@ header #header-container #nav-block {
   position: fixed;
   top: 3.875rem;
   right: 0px;
+  z-index: 1;
   width: 0px;
   min-height: 100vh;
   transition: width 0.5s;
@@ -90,7 +100,7 @@ header #header-container #nav-block ul li {
 }
 
 main {
-  min-height: calc(100vh - 2.875rem - 5.75rem);
+  min-height: calc(100vh - 3.875rem - 5.75rem);
 }
 main #form-wrapper {
   width: 40%;
@@ -159,4 +169,45 @@ main #form-wrapper .radio-wrapper .radio-holder input {
   height: 20px;
   margin-left: 0.75rem;
   margin-right: 0.75rem;
+}
+
+footer {
+  background-color: lightgray;
+  min-height: 5.75rem;
+}
+footer i {
+  font-size: 1.5rem;
+}
+footer > .flex-between {
+  margin: 0px auto;
+  width: 80%;
+}
+footer #socials {
+  width: 25%;
+}
+footer #socials #socials-wrapper {
+  width: 200px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+footer #info {
+  width: 25%;
+  font-size: 0.8rem;
+}
+footer #files {
+  width: 100px;
+}
+footer #footer-nav {
+  width: 40%;
+  padding-top: 1.125rem;
+  padding-bottom: 1.125rem;
+}
+footer #footer-nav ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */

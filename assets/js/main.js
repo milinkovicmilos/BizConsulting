@@ -60,6 +60,27 @@ function openNav() {
 }
 
 //#endregion
+//#region Footer Data
+const socialsNames = ["instagram", "facebook", "linkedin"];
+//#endregion
+//#region Footer Functions
+function formatSocials(socialsNames) {
+    let socialsLinks = "";
+    for (const social of socialsNames) {
+        socialsLinks += `<a href="www.${social}.com"><i class="fa-brands fa-${social}"></i></a>`;
+    }
+    document.querySelector("#socials-wrapper").innerHTML = socialsLinks;
+}
+function formatFooterLinks(links) {
+    let navListContent = "";
+    for (const element of links) {
+        // Loops through each link object and concatenates all li HTML elements
+        navListContent += formatLinkElement(element);
+    }
+    navListContent = "<ul>" + navListContent + "</ul>";
+    document.querySelector("#footer-nav nav").innerHTML = navListContent;
+}
+//#endregion
 //#region Form Error Data
 const formErrors = [
     {
@@ -160,6 +181,8 @@ function checkFormElement() {
 
 window.addEventListener("load", function () {
     formatNavList(navLinks);
+    formatSocials(socialsNames);
+    formatFooterLinks(navLinks);
     
     let hamburger = document.querySelector("#hamburger");
     hamburger.addEventListener("click", openNav);
@@ -181,20 +204,22 @@ window.addEventListener("load", function () {
 
     // Make sure form is valid before submition
     let form = document.querySelector("form");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        // Fires blur event on every form element so 
-        // that we can check if all form elements values are valid
-        for (const element of formElements) {
-            element.dispatchEvent(new Event("blur"));
-        }
-
-        // After running checkFormElement for every form
-        // element if no errors are present we can submit the form
-        for (const element of formErrors) {
-            if (element.isVisible) return;
-        }
-        form.submit();
-    });
+    if (form != null) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            // Fires blur event on every form element so 
+            // that we can check if all form elements values are valid
+            for (const element of formElements) {
+                element.dispatchEvent(new Event("blur"));
+            }
+    
+            // After running checkFormElement for every form
+            // element if no errors are present we can submit the form
+            for (const element of formErrors) {
+                if (element.isVisible) return;
+            }
+            form.submit();
+        });
+    }
 });
