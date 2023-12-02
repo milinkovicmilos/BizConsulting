@@ -25,7 +25,7 @@ const navLinks = [
 
 //#endregion
 //#region Navbar Functions
-function formatNavList(links) {
+function formatHeaderLinks(links) {
     // Builds HTML elements for nav menus
     let navList = document.querySelector("#nav-list");
     let navBlock = document.querySelector("#nav-block");
@@ -178,9 +178,53 @@ function checkFormElement() {
 }
 
 //#endregion
+//#region Slider
+let slides = [];
+let currentSlide = 0;
+const sliderTimer = 5000;
+function previousSlide() {
+    if (currentSlide == 0) {
+        $(slides[currentSlide]).hide();
+        currentSlide = slides.length - 1;
+        $(slides[currentSlide]).fadeIn("slow");
+    } else {
+        $(slides[currentSlide]).hide();
+        currentSlide--;
+        $(slides[currentSlide]).fadeIn("slow");
+    }
+}
+function nextSlide() {
+    if (currentSlide == slides.length - 1) {
+        $(slides[currentSlide]).hide();
+        currentSlide = 0;
+        $(slides[currentSlide]).fadeIn("slow");
+    } else {
+        $(slides[currentSlide]).hide();
+        currentSlide++;
+        $(slides[currentSlide]).fadeIn("slow");
+    }
+}
+function initializeSlider() {
+    // Making sure inactive slides can't be seen
+    slides = $(".slider-slide");
+    for (let i = 1; i < slides.length; i++) {
+        $(slides[i]).hide();
+    }
+
+    // Initializing what buttons do
+    let buttonLeft = $(".slider-btn-left");
+    buttonLeft.click(previousSlide);
+
+    let buttonRight = $(".slider-btn-right");
+    buttonRight.click(nextSlide);
+
+    setInterval(nextSlide, sliderTimer);
+}
+//#endregion
 
 window.addEventListener("load", function () {
-    formatNavList(navLinks);
+    // Dynamically writing out header and footer
+    formatHeaderLinks(navLinks);
     formatSocials(socialsNames);
     formatFooterLinks(navLinks);
     
@@ -193,6 +237,10 @@ window.addEventListener("load", function () {
     for (const element of hamburgerLinks) {
         element.addEventListener("click", openNav);
     }
+
+    // Check if there is a slider on page
+    let slider = document.querySelector(".slider");
+    if (slider != null) initializeSlider()
 
     // Select all form elements
     let formElements = document.querySelectorAll('input[type="text"], #select-region');
