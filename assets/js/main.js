@@ -244,15 +244,54 @@ function initializeSlider() {
     }
     $('.slider').append(container);
 
+    // Adds text to sliders
+    fillSlider();
+
     sliderTimeout = setTimeout(nextSlide, sliderTimer);
 }
 //#endregion
-
+//#region Dynamic HTML Elements
+const slidesTexts = [
+    `Our consultants work collaboratively with 
+    you to develop a strategic roadmap 
+    that aligns with your business goals and objectives.`,
+    `Our consultants take the time to understand 
+    your business intricately, ensuring 
+    our recommendations fit seamlessly into your operations.`,
+    `Our track record speaks for 
+    itself, and we take pride in being a catalyst for positive change.`
+];
+function fillSlider() {
+    for (let i = 0; i < slides.length; i++) {
+        let text = `<p>${slidesTexts[i]}</p>`;
+        slides[i].querySelector(".slider-text-wrapper").innerHTML = text;
+    }
+}
+const servicesIcons = ["bullseye", "arrow-trend-up", "comments-dollar", "bullhorn"];
+const servicesTitles = ["Business Strategy", "Operations Excellence", "Financial Advisory", "Marketing Solutions"];
+const servicesTexts = [
+    "Craft a roadmap for success with our comprehensive business strategy services. From market analysis to long-term planning, we've got you covered.",
+    "Streamline your operations for maximum efficiency. We identify bottlenecks, optimize processes, and implement best practices to enhance overall performance.",
+    "Make smart financial decisions with our expert financial advisory services. From budgeting to investment strategies, we help you achieve fiscal responsibility and sustainability.",
+    "Stand out in a crowded market with our innovative marketing solutions. Whether it's digital marketing, branding, or market research, we'll help you build a strong and recognizable brand."
+];
+function fillServices() {
+    for (let i = 0; i < servicesIcons.length; i++) {
+        let servicesHolder = document.querySelector("#services-holder");
+        let element = document.createElement("div");
+        element.classList.add("services-element");
+        let elementHTML = `<i class="fa-solid fa-${servicesIcons[i]}"></i><h2>${servicesTitles[i]}</h2><p>${servicesTexts[i]}</p>`;
+        element.innerHTML = elementHTML;
+        servicesHolder.appendChild(element);
+    }
+}
+//#endregion
 window.addEventListener("load", function () {
     // Dynamically writing out header and footer
     formatHeaderLinks(navLinks);
     formatSocials(socialsNames);
     formatFooterLinks(navLinks);
+    fillServices();
     
     let hamburger = document.querySelector("#hamburger");
     hamburger.addEventListener("click", openNav);

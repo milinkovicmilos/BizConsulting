@@ -15,6 +15,13 @@ body {
     ul {
         list-style-type: none;
     }
+    h1, h2, h3, h4 {
+        text-align: center;
+        @include padding-y($default-padding);
+    }
+    h1 {
+        font-size: clamp(1.2rem, 2vw, 2rem);
+    }
 }
 header {
     position: relative;
@@ -53,7 +60,7 @@ header {
             top: $header-height;
             right: 0px;
             width: 0px;
-            min-height: 100vh - $header-height;
+            min-height: 100vh;
             transition: width 0.5s;
             background-color: gray;
             ul {
@@ -69,6 +76,55 @@ header {
 }
 main {
     min-height: calc(100vh - $header-height - $footer-height);
+    #about-us {
+        @include width-center(80%);
+        h1 {
+            font-size: clamp(1.2rem, 2vw, 2rem);
+            & ~ .flex-between {
+                @include padding-y($default-padding * 3);
+                #round-image-holder {
+                    width: clamp(50px, 15vw + 1rem, 250px);
+                    height: clamp(50px, 15vw + 1rem, 250px);
+                    border-radius: 50%;
+                    @include border(1px, blue);
+                    box-shadow: -1px 1px 1px;
+                    margin-left: 5rem;
+                }
+                p {
+                    width: 50%;
+                    padding-top: $default-padding * 2;
+                    padding-right: $default-padding;
+                    line-height: 1.6rem;
+                    font-size: 1.2rem;
+                    text-align: justify;
+                }
+            }
+        }
+        h2 {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            padding-bottom: $default-padding * 2;
+            & ~ div {
+                align-items: stretch;
+                .services-element {
+                    width: 22.5%;
+                    background-color: lightgray;
+                    border-radius: 25px;
+                    padding: 2rem;
+                    p {
+                        font-size: clamp(1rem, 2vw, 1.2rem);
+                        width: 100%;
+                        text-align: justify;
+                        padding: 0px;
+                    }
+                }
+                i {
+                    display: block;
+                    text-align: center;
+                    font-size: clamp(1.2rem, 2vw, 2rem);
+                }
+            }
+        } 
+    }
     #form-wrapper {
         @include width-center(40%);
         display: grid;

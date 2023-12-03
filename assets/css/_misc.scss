@@ -30,6 +30,9 @@ $hamburger-menu-width: 60vw;
     flex-wrap: $wrap;
     align-items: $align;
 }
+@mixin border($width, $color) {
+    border: $width solid $color;
+}
 /* Classes for overriding */
 .d-none {
     display: none!important;
@@ -44,6 +47,9 @@ $hamburger-menu-width: 60vw;
 }
 .flex-between {
     @include flex(space-between);
+}
+.flex-end {
+    @include flex(flex-end);
 }
 .hb-active {
     width: $hamburger-menu-width!important;
@@ -85,6 +91,8 @@ $hamburger-menu-width: 60vw;
     flex-direction: column;
     p {
         text-align: center;
+        width: 60%;
+        font-size: clamp(1rem, 2vw, 1.4rem);
     }
 }
 .slide-inactive {

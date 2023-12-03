@@ -1,4 +1,13 @@
 @import '_misc.scss';
+@media screen and (max-width: 1280px) {
+    main #about-us h2 ~ div {
+        flex-wrap: wrap;
+        .services-element {
+            @include margin-y($default-padding);
+            width: 47.5%;
+        }
+    }
+}
 @media screen and (max-width: 768px) {
     header #header-container {
         #hamburger {
@@ -28,16 +37,21 @@
     }
 }
 @media screen and (max-width: 512px) {
-    main #form-wrapper {
-        font-size: 0.9rem;
-        width: 70%;
-        .form-input {
-            &:nth-child(n + 5):nth-child(-n + 6) {
-                grid-column: 1 / 3;
-            }
-            .error-text {
-                font-size: 0.7rem;
+    main {
+        #about-us h2 ~ div .services-element {
+            width: 100%;
+        }
+        #form-wrapper {
+            font-size: 0.9rem;
+            width: 70%;
+            .form-input {
+                &:nth-child(n + 5):nth-child(-n + 6) {
+                    grid-column: 1 / 3;
+                }
+                .error-text {
+                    font-size: 0.7rem;
+                }
             }
         }
-    }
+    } 
 }
