@@ -181,56 +181,76 @@ function checkFormElement() {
 
 //#endregion
 //#region Slider
-let slides = [];
+let slidersData = [];
 let currentSlide = 0;
 const sliderTimer = 5000;
 let sliderTimeout;
-function previousSlide() {
-    if (currentSlide == 0) {
-        $(slides[currentSlide]).hide();
-        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
-        currentSlide = slides.length - 1;
-        $(slides[currentSlide]).fadeIn("slow");
-        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
-    } else {
-        $(slides[currentSlide]).hide();
-        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
-        currentSlide--;
-        $(slides[currentSlide]).fadeIn("slow");
-        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
+function getSliderObj(sliderNode) {
+    for (let i = 0; i < slidersData.length; i++) {
+        if (slidersData[i].sliderNode == sliderNode) return slidersData[i];
     }
-    clearTimeout(sliderTimeout);
-    sliderTimeout = setTimeout(nextSlide, sliderTimer);
+    return null;
+}
+function resetSliderTimeout(sliderObj) {
+    let nextBtn = sliderObj.sliderNode.querySelector(".slider-btn-right");
+    clearTimeout(sliderObj.sliderTimeout);
+    sliderObj.sliderTimeout = setTimeout(() => $(nextBtn).click(), sliderTimer);
+}
+function previousSlide() {
+    // Gets the appropriate slider object from the list
+    sliderObj = getSliderObj(this.parentNode);
+    let sliderIndicators = sliderObj.sliderNode.querySelectorAll(".slider-indicator");
+
+    if (sliderObj.currentSlide == 0) {
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).hide();
+        $(sliderIndicators[sliderObj.currentSlide]).addClass("slider-indicator-inactive");
+        sliderObj.currentSlide = sliderObj.sliderSlides.length - 1;
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).fadeIn("slow");
+        $(sliderIndicators[sliderObj.currentSlide]).removeClass("slider-indicator-inactive");
+    } else {
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).hide();
+        $(sliderIndicators[sliderObj.currentSlide]).addClass("slider-indicator-inactive");
+        sliderObj.currentSlide--;
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).fadeIn("slow");
+        $(sliderIndicators[sliderObj.currentSlide]).removeClass("slider-indicator-inactive");
+    }
+    resetSliderTimeout(sliderObj);
 }
 function nextSlide() {
-    if (currentSlide == slides.length - 1) {
-        $(slides[currentSlide]).hide();
-        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
-        currentSlide = 0;
-        $(slides[currentSlide]).fadeIn("slow");
-        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
+    // Gets the appropriate slider object from the list
+    sliderObj = getSliderObj(this.parentNode);
+    let sliderIndicators = sliderObj.sliderNode.querySelectorAll(".slider-indicator");
+
+    // Gets the current slide and makes it invisible, makes next one visible
+    // Also does the same with slider indicators
+    if (sliderObj.currentSlide == sliderObj.sliderSlides.length - 1) {
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).hide();
+        $(sliderIndicators[sliderObj.currentSlide]).addClass("slider-indicator-inactive");
+        sliderObj.currentSlide = 0;
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).fadeIn("slow");
+        $(sliderIndicators[sliderObj.currentSlide]).removeClass("slider-indicator-inactive");
     } else {
-        $(slides[currentSlide]).hide();
-        $($('.slider-indicator')[currentSlide]).addClass("slider-indicator-inactive");
-        currentSlide++;
-        $(slides[currentSlide]).fadeIn("slow");
-        $($('.slider-indicator')[currentSlide]).removeClass("slider-indicator-inactive");
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).hide();
+        $(sliderIndicators[sliderObj.currentSlide]).addClass("slider-indicator-inactive");
+        sliderObj.currentSlide++;
+        $(sliderObj.sliderSlides[sliderObj.currentSlide]).fadeIn("slow");
+        $(sliderIndicators[sliderObj.currentSlide]).removeClass("slider-indicator-inactive");
     }
-    clearTimeout(sliderTimeout);
-    sliderTimeout = setTimeout(nextSlide, sliderTimer);
+    resetSliderTimeout(sliderObj);
 }
-function initializeSlider() {
+function initializeSlider(sliderNode) {
+    let slides = sliderNode.querySelectorAll(".slider-slide");
+
     // Making sure inactive slides can't be seen
-    slides = $(".slider-slide");
     for (let i = 1; i < slides.length; i++) {
         $(slides[i]).hide();
     }
 
     // Adding button event listeners
-    let buttonLeft = $(".slider-btn-left");
+    let buttonLeft = $(sliderNode.querySelector(".slider-btn-left"));
     buttonLeft.click(previousSlide);
 
-    let buttonRight = $(".slider-btn-right");
+    let buttonRight = $(sliderNode.querySelector(".slider-btn-right"));
     buttonRight.click(nextSlide);
 
     // Adding slide indicators
@@ -242,12 +262,15 @@ function initializeSlider() {
         if (i > 0) element.classList.add("slider-indicator-inactive");
         container.appendChild(element);
     }
-    $('.slider').append(container);
+    $(sliderNode).append(container);
+    let timeout = setTimeout(() => buttonRight.click(), sliderTimer);
 
-    // Adds text to sliders
-    fillSlider();
-
-    sliderTimeout = setTimeout(nextSlide, sliderTimer);
+    slidersData.push({
+        "sliderNode" : sliderNode,
+        "sliderSlides" : slides,
+        "currentSlide" : 0,
+        "sliderTimeout" : timeout
+    });
 }
 //#endregion
 //#region Dynamic HTML Elements
@@ -261,10 +284,10 @@ const slidesTexts = [
     `Our track record speaks for 
     itself, and we take pride in being a catalyst for positive change.`
 ];
-function fillSlider() {
-    for (let i = 0; i < slides.length; i++) {
+function fillSlider(sliderObj) {
+    for (let i = 0; i < sliderObj.sliderSlides.length; i++) {
         let text = `<p>${slidesTexts[i]}</p>`;
-        slides[i].querySelector(".slider-text-wrapper").innerHTML = text;
+        sliderObj.sliderSlides[i].querySelector(".slider-text-wrapper").innerHTML = text;
     }
 }
 const servicesIcons = ["bullseye", "arrow-trend-up", "comments-dollar", "bullhorn"];
@@ -286,6 +309,7 @@ function fillServices() {
     }
 }
 //#endregion
+
 window.addEventListener("load", function () {
     // Dynamically writing out header and footer
     formatHeaderLinks(navLinks);
@@ -304,8 +328,14 @@ window.addEventListener("load", function () {
     }
 
     // Check if there is a slider on page
-    let slider = document.querySelector(".slider");
-    if (slider != null) initializeSlider()
+    let sliders = document.querySelectorAll(".slider");
+    if (sliders.length != 0) {
+        for (let index = 0; index < sliders.length; index++) {
+            initializeSlider(sliders[index]);
+        }
+        // Writing out texts for first slider
+        fillSlider(slidersData[0]);
+    }
 
     // Select all form elements
     let formElements = document.querySelectorAll('input[type="text"], #select-region');
