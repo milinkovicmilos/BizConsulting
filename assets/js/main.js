@@ -308,6 +308,43 @@ function fillServices() {
         servicesHolder.appendChild(element);
     }
 }
+const testimonialsImgUrls = [
+    "assets/img/testimonial-1.jpg", "assets/img/testimonial-2.jpg", 
+    "assets/img/testimonial-3.jpg", "assets/img/testimonial-4.jpg",
+];
+const testimonialsTexts = [
+    `I can't express enough gratitude for the incredible support we 
+    received from BizConsulting. Their team demonstrated unparalleled 
+    expertise in streamlining our business processes and optimizing our 
+    operations. I highly recommend BizConsulting to any business 
+    looking to elevate its performance and achieve sustainable success.`,
+    `BizConsulting truly exceeded our expectations in every aspect. 
+    Their team not only provided valuable insights into market trends 
+    but also tailored their consulting services to align perfectly with 
+    our business goals. Working with BizConsulting was a game-changer for 
+    our company, and I wholeheartedly endorse their services.`,
+    `Choosing BizConsulting was the best decisions we made for 
+    our startup. Their knowledgeable consultants guided us through the 
+    intricacies of business development, helping us navigate challenges 
+    and capitalize on opportunities. Thanks to BizConsulting's dedication 
+    we are now on a trajectory for long-term prosperity.`,
+    `BizConsulting stands out as a beacon of excellence in the world of 
+    business consultancy. Their team's commitment to understanding our 
+    unique needs and challenges set them apart. I highly recommend their services to any company 
+    seeking not just advice, but a genuine partnership for sustained growth.`
+];
+const testimonialsNames = ["Sarah Thompson", "James Rodriguez", "Emily Chen", "Michael Davis"];
+function fillTestimonials() {
+    let testimonialSlides = document.querySelectorAll("#testimonials .slider-slide");
+    for (let i = 0; i < testimonialSlides.length; i++) {
+        let imgHolderHTML = `<img src="${testimonialsImgUrls[i]}" alt="testimonial-image-${i}"/>`;
+        testimonialSlides[i].querySelector(".testimonial-img-holder").innerHTML = imgHolderHTML;
+        let textHTML = `<p>${testimonialsTexts[i]}</p>`;
+        testimonialSlides[i].querySelector(".testimonial-text-holder").innerHTML = textHTML;
+        let nameHTML = `<p class="testimonial-name">${testimonialsNames[i]}</p>`;
+        testimonialSlides[i].querySelector(".testimonial-name-holder").innerHTML = nameHTML;
+    }
+}
 //#endregion
 
 window.addEventListener("load", function () {
@@ -316,6 +353,7 @@ window.addEventListener("load", function () {
     formatSocials(socialsNames);
     formatFooterLinks(navLinks);
     fillServices();
+    fillTestimonials();
     
     let hamburger = document.querySelector("#hamburger");
     hamburger.addEventListener("click", openNav);

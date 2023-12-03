@@ -38,12 +38,6 @@
 }
 
 /* Slider */
-.test-div {
-  height: 500px;
-  width: 100%;
-  background-color: yellow;
-}
-
 .slider {
   position: relative;
   overflow: hidden;
@@ -206,6 +200,11 @@ header #header-container #nav-block ul li {
 main {
   min-height: calc(100vh - 4.5rem - 5.75rem);
 }
+main #main-slider .slider-background-image {
+  height: calc(100vh - 4.5rem);
+  width: 100%;
+  background-color: yellow;
+}
 main #about-us {
   width: 80%;
   margin: 0px auto;
@@ -256,6 +255,77 @@ main #about-us h2 ~ div i {
   display: block;
   text-align: center;
   font-size: clamp(1.2rem, 2vw, 2rem);
+}
+main #testimonials {
+  width: 80%;
+  margin: 0px auto;
+}
+main #testimonials .flex-between {
+  width: 100%;
+}
+main #testimonials .flex-between > p {
+  width: 40%;
+  margin: 0px auto;
+  text-align: justify;
+  line-height: 1.6rem;
+}
+main #testimonials .flex-between .slider {
+  position: relative;
+  width: 50%;
+  height: 250px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightblue;
+  border-radius: 25px;
+}
+main #testimonials .flex-between .slider .slider-slide > .slider-grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  -moz-column-gap: 0.75rem;
+       column-gap: 0.75rem;
+  row-gap: 0.75rem;
+}
+main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimonial-img-holder {
+  width: 50%;
+  grid-column: 1/2;
+  margin-left: 4.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: column;
+}
+main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimonial-img-holder img {
+  border-radius: 25px;
+  outline: 1px solid lightblue;
+  box-shadow: 1px 1px 1px 1px;
+  max-width: 100%;
+}
+main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimonial-text-holder {
+  grid-column: 2/3;
+  width: 100%;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  line-height: clamp(1rem, 2vw, 1.4rem);
+  padding-right: 4.5rem;
+  padding-top: 0.75rem;
+}
+main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimonial-name-holder {
+  grid-column: 1/3;
+  padding-left: 4.5rem;
+}
+main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimonial-name-holder .testimonial-name {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+main #testimonials .flex-between .slider .slider-slide ~ .flex-between {
+  width: auto;
+  align-items: center;
+  padding-left: 4.5rem;
 }
 main #form-wrapper {
   width: 40%;

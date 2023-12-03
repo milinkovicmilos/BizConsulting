@@ -1,4 +1,25 @@
 @import '_misc.scss';
+@media screen and (max-width: 1400px) {
+    main #testimonials .flex-between {
+        flex-wrap: wrap;
+        & > p {
+            width: 70%;
+            text-align: center;
+        }
+        & > .slider {
+            width: 100%;
+            .slider-slide > .slider-grid  {
+                .testimonial-img-holder {
+                    width: 35%;
+                    margin-left: 40%;
+                }
+            }
+        }
+        .slider .slider-slide ~ .flex-between {
+            padding: 0px;
+        }
+    }
+}
 @media screen and (max-width: 1280px) {
     main #about-us h2 ~ div {
         flex-wrap: wrap;
@@ -6,6 +27,11 @@
             @include margin-y($default-padding);
             width: 47.5%;
         }
+    }
+}
+@media screen and (max-width: 992px) {
+    main #testimonials .flex-between > .slider .slider-slide > .slider-grid .testimonial-img-holder {
+        width: 50%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -36,10 +62,37 @@
         }
     }
 }
+@media screen and (max-width: 670px) {
+    main #testimonials .flex-between > .slider {
+        width: 100%;
+        .slider-slide > .slider-grid  {
+            .testimonial-img-holder {
+                display: none;
+            }
+            .testimonial-text-holder {
+                width: 100%;
+                padding: 0px;
+                font-size: 0.9rem;
+                text-align: center;
+                @include padding-x($default-padding);
+            }
+            .testimonial-name-holder {
+                padding: 0px;
+            }
+        }
+        .slider-btn-left, .slider-btn-right {
+            display: none;
+        }
+    }
+}
 @media screen and (max-width: 512px) {
     main {
         #about-us h2 ~ div .services-element {
             width: 100%;
+        }
+        #testimonials .flex-between > .slider .slider-slide ~ .flex-between {
+            width: 80%;
+            padding: 0px;
         }
         #form-wrapper {
             font-size: 0.9rem;
@@ -54,4 +107,9 @@
             }
         }
     } 
+}
+@media screen and (max-width: 350px) {
+    main #testimonials .flex-between > .slider .slider-slide ~ .flex-between {
+        width: 100%;
+    }
 }

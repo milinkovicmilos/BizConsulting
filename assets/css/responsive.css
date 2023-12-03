@@ -38,12 +38,6 @@
 }
 
 /* Slider */
-.test-div {
-  height: 500px;
-  width: 100%;
-  background-color: yellow;
-}
-
 .slider {
   position: relative;
   overflow: hidden;
@@ -113,6 +107,25 @@
   background-color: gray;
 }
 
+@media screen and (max-width: 1400px) {
+  main #testimonials .flex-between {
+    flex-wrap: wrap;
+  }
+  main #testimonials .flex-between > p {
+    width: 70%;
+    text-align: center;
+  }
+  main #testimonials .flex-between > .slider {
+    width: 100%;
+  }
+  main #testimonials .flex-between > .slider .slider-slide > .slider-grid .testimonial-img-holder {
+    width: 35%;
+    margin-left: 40%;
+  }
+  main #testimonials .flex-between .slider .slider-slide ~ .flex-between {
+    padding: 0px;
+  }
+}
 @media screen and (max-width: 1280px) {
   main #about-us h2 ~ div {
     flex-wrap: wrap;
@@ -121,6 +134,11 @@
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
     width: 47.5%;
+  }
+}
+@media screen and (max-width: 992px) {
+  main #testimonials .flex-between > .slider .slider-slide > .slider-grid .testimonial-img-holder {
+    width: 50%;
   }
 }
 @media screen and (max-width: 768px) {
@@ -150,9 +168,35 @@
     font-size: 0.7rem;
   }
 }
+@media screen and (max-width: 670px) {
+  main #testimonials .flex-between > .slider {
+    width: 100%;
+  }
+  main #testimonials .flex-between > .slider .slider-slide > .slider-grid .testimonial-img-holder {
+    display: none;
+  }
+  main #testimonials .flex-between > .slider .slider-slide > .slider-grid .testimonial-text-holder {
+    width: 100%;
+    padding: 0px;
+    font-size: 0.9rem;
+    text-align: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  main #testimonials .flex-between > .slider .slider-slide > .slider-grid .testimonial-name-holder {
+    padding: 0px;
+  }
+  main #testimonials .flex-between > .slider .slider-btn-left, main #testimonials .flex-between > .slider .slider-btn-right {
+    display: none;
+  }
+}
 @media screen and (max-width: 512px) {
   main #about-us h2 ~ div .services-element {
     width: 100%;
+  }
+  main #testimonials .flex-between > .slider .slider-slide ~ .flex-between {
+    width: 80%;
+    padding: 0px;
   }
   main #form-wrapper {
     font-size: 0.9rem;
@@ -163,5 +207,10 @@
   }
   main #form-wrapper .form-input .error-text {
     font-size: 0.7rem;
+  }
+}
+@media screen and (max-width: 350px) {
+  main #testimonials .flex-between > .slider .slider-slide ~ .flex-between {
+    width: 100%;
   }
 }/*# sourceMappingURL=responsive.css.map */
