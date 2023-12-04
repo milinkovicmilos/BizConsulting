@@ -571,7 +571,6 @@ window.addEventListener("load", function () {
     let form = document.querySelector("form");
     if (form != null) {
         $('#privacy-policy').click(openPrivacyPolicy);
-        $('#privacy-policy').click();
         form.addEventListener("submit", function (event) {
             event.preventDefault();
     
