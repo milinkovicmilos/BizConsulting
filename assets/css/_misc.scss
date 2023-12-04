@@ -78,9 +78,9 @@ $hamburger-menu-width: 60vw;
 }
 .slider-text-wrapper {
     position: absolute;
-    background-color: lightgray;
+    background-color: rgba(211, 211, 211, 0.75);
     width: 100%;
-    height: 25%;
+    height: 20%;
     top: 70%;
     @include flex(center, nowrap, center);
     flex-direction: column;

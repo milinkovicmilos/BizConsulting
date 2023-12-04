@@ -73,6 +73,7 @@ function formatSocials(socialsNames) {
     }
     document.querySelector("#socials-wrapper").innerHTML = socialsLinks;
 }
+
 function formatFooterLinks(links) {
     let navListContent = "";
     for (const element of links) {
@@ -140,7 +141,6 @@ const formErrors = [
         "isVisible" : false
     }
 ];
-
 //#endregion
 //#region Form Functions
 function getFormErrorObjs(formID) {
@@ -274,6 +274,14 @@ function initializeSlider(sliderNode) {
 }
 //#endregion
 //#region Dynamic HTML Elements
+// Called for main slider only
+function fillSliderImages(sliderObj) {
+    for (let i = 0; i < sliderObj.sliderSlides.length; i++) {
+        let sliderImg = sliderObj.sliderSlides[i].querySelector(".slider-background-image");
+        $(sliderImg).css("background-image", `url("assets/img/main-slide-${i}.jpg")`);
+    }
+}
+
 const slidesTexts = [
     `Our consultants work collaboratively with 
     you to develop a strategic roadmap 
@@ -284,12 +292,28 @@ const slidesTexts = [
     `Our track record speaks for 
     itself, and we take pride in being a catalyst for positive change.`
 ];
+
 function fillSlider(sliderObj) {
     for (let i = 0; i < sliderObj.sliderSlides.length; i++) {
         let text = `<p>${slidesTexts[i]}</p>`;
         sliderObj.sliderSlides[i].querySelector(".slider-text-wrapper").innerHTML = text;
     }
 }
+
+// Called on main page only
+function fillAboutUs() {
+    $("#about-us #image-holder").css("background-image", "url('assets/img/about-us-image.jpg'");
+    let textHTML = `
+        <p>
+            At BizConsulting, we understand that navigating the complex landscape 
+            of modern business can be challenging. That's why we're here to guide you every step of 
+            the way. With a commitment to excellence and a passion for helping businesses thrive, we offer 
+            unparalleled consulting services tailored to meet your unique needs.
+        </p>
+    `;
+    $("#about-us-text").append(textHTML);
+}
+
 const servicesIcons = ["bullseye", "arrow-trend-up", "comments-dollar", "bullhorn"];
 const servicesTitles = ["Business Strategy", "Operations Excellence", "Financial Advisory", "Marketing Solutions"];
 const servicesTexts = [
@@ -298,6 +322,7 @@ const servicesTexts = [
     "Make smart financial decisions with our expert financial advisory services. From budgeting to investment strategies, we help you achieve fiscal responsibility and sustainability.",
     "Stand out in a crowded market with our innovative marketing solutions. Whether it's digital marketing, branding, or market research, we'll help you build a strong and recognizable brand."
 ];
+
 function fillServices() {
     for (let i = 0; i < servicesIcons.length; i++) {
         let servicesHolder = document.querySelector("#services-holder");
@@ -308,6 +333,7 @@ function fillServices() {
         servicesHolder.appendChild(element);
     }
 }
+
 const testimonialsImgUrls = [
     "assets/img/testimonial-1.jpg", "assets/img/testimonial-2.jpg", 
     "assets/img/testimonial-3.jpg", "assets/img/testimonial-4.jpg",
@@ -334,6 +360,7 @@ const testimonialsTexts = [
     seeking not just advice, but a genuine partnership for sustained growth.`
 ];
 const testimonialsNames = ["Sarah Thompson", "James Rodriguez", "Emily Chen", "Michael Davis"];
+
 function fillTestimonials() {
     let testimonialSlides = document.querySelectorAll("#testimonials .slider-slide");
     for (let i = 0; i < testimonialSlides.length; i++) {
@@ -352,8 +379,9 @@ window.addEventListener("load", function () {
     formatHeaderLinks(navLinks);
     formatSocials(socialsNames);
     formatFooterLinks(navLinks);
-    fillServices();
-    fillTestimonials();
+    if ($("#about-us").length != 0) fillServices();
+    if ($("#testimonials").length != 0) fillTestimonials();
+    if ($("#about-us").length != 0) fillAboutUs();
     
     let hamburger = document.querySelector("#hamburger");
     hamburger.addEventListener("click", openNav);
@@ -373,6 +401,7 @@ window.addEventListener("load", function () {
         }
         // Writing out texts for first slider
         fillSlider(slidersData[0]);
+        fillSliderImages(slidersData[0]);
     }
 
     // Select all form elements
