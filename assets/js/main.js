@@ -426,7 +426,69 @@ function fillTestimonials() {
 }
 
 function openPrivacyPolicy() {
-    
+    let body = $("body");
+    body.addClass("stop-scroll");
+    let darken = $("#darken");
+    darken.css("background-color", "#00000090");
+    darken.css("width", "100vw");
+    darken.css("height", "100vh");
+    let promptHtml = `
+        <div class="prompt-scroll">
+            <p>
+                This Privacy Policy outlines how we collect, use, disclose, 
+                and safeguard your personal information when you visit our 
+                website or use our services. By accessing or using BizConsulting, 
+                you agree to the terms outlined in this Privacy Policy.
+            </p>
+            <p class="prompt-title">Personal Information</p>
+            <p>
+            When you visit our website or use our services, we may collect personal information such as your name, email address, phone number, and other contact details.
+            </p>
+            <p class="prompt-title">Service Delivery</p>
+            <p>
+                We use your personal information to provide you with the 
+                consulting services you request, including communication and 
+                coordination.
+            </p>
+            <p class="prompt-title">Legal Compliance</p>
+            <p>
+                We may disclose your information if required by law or in 
+                response to a legal request, such as a court order or government 
+                inquiry.
+            </p>
+            <p class="prompt-title">Security</p>
+            <p>
+                We implement reasonable security measures to protect your information 
+                from unauthorized access, alteration, disclosure, or destruction. 
+                However, no data transmission over the internet can be guaranteed 
+                as completely secure.
+            </p>
+            <p class="prompt-title">Updates to this Privacy Policy</p>
+                We may update this Privacy Policy from time to time to reflect 
+                changes in our practices or for other operational, legal, or 
+                regulatory reasons. We encourage you to review this page 
+                periodically for the latest information.
+            </p>
+            <p class="prompt-title">Contact Us</p>
+            <p>
+                If you have any questions or concerns about this Privacy Policy, 
+                please contact us at bizconsulting&#64;business.com.
+            </p>
+        </div>
+        <button>I understand</button>
+    `;
+    let prompt = document.createElement("div");
+    prompt.classList.add("prompt");
+    prompt.innerHTML = promptHtml;
+    darken.append(prompt);
+
+    prompt.querySelector("button").addEventListener("click", function () {
+        body.removeClass("stop-scroll");
+        darken.css("background-color", "transparent");
+        darken.css("width", "0px");
+        darken.css("height", "0px");
+        $(prompt).remove();
+    });
 }
 //#endregion
 
@@ -464,7 +526,6 @@ window.addEventListener("load", function () {
                     duration: 1000,
                     delay: 10,
                 });
-                console.log("count")
             }
             this.destroy();
         }, { offset : "100%" });
@@ -510,6 +571,7 @@ window.addEventListener("load", function () {
     let form = document.querySelector("form");
     if (form != null) {
         $('#privacy-policy').click(openPrivacyPolicy);
+        $('#privacy-policy').click();
         form.addEventListener("submit", function (event) {
             event.preventDefault();
     

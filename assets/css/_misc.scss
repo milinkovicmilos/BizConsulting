@@ -37,6 +37,45 @@ $bg-color: lighten($tertiary-color, 10%);
 @mixin border($width, $color) {
     border: $width solid $color;
 }
+#darken {
+    position: fixed;
+    z-index: 6;
+    width: 0;
+    height: 0;
+    top: 0px;
+    left: 0px;
+    background-color: transparent;
+    transition: background-color 1s;
+}
+#privacy-policy {
+    cursor: pointer;
+    text-decoration: underline;
+    color: lighten($secondary-color, 20%);
+}
+.prompt {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    padding: $default-padding * 2;
+    background-color: #fff;
+    border-radius: 25px;
+    .prompt-scroll {
+        overflow-y: scroll;
+        height: 90%;
+        .prompt-title {
+            font-weight: bold;
+            margin-top: $default-padding;
+        }
+    }
+    button {
+        width: 100%;
+        @include padding-y($default-padding);
+        margin-top: $default-padding;
+        border-radius: 25px;
+    }
+}
 /* Classes for overriding */
 .d-none {
     display: none!important;

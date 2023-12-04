@@ -215,7 +215,11 @@
                 }
             }
         }
-    } 
+    }
+    .prompt {
+        width: 80%;
+        left: 10%;
+    }
 }
 @media screen and (max-width: 350px) {
     main #testimonials .flex-between > .slider .slider-slide ~ .flex-between {
