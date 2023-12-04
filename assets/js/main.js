@@ -454,12 +454,16 @@ window.addEventListener("load", function () {
         fillStatistics();
         // jQuery plugin Counter-Up
         let elements = $(".counter");
-        for (const el of elements) {
-            counterUp(el, {
-                duration: 1000,
-				delay: 10,
-            });
-        }
+        $("#statistics").waypoint(function () {
+            for (const el of elements) {
+                counterUp(el, {
+                    duration: 1000,
+                    delay: 10,
+                });
+                console.log("count")
+            }
+            this.destroy();
+        }, { offset : "100%" });
     }
     if ($("#testimonials").length != 0) fillTestimonials();
     if ($("#about-us").length != 0) fillAboutUs();
