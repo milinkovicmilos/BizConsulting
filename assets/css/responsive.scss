@@ -6,6 +6,10 @@
             width: 70%;
             text-align: center;
         }
+        #testimonials-about-text {
+            order: 1;
+            width: 100%;
+        }
         & > .slider {
             width: 100%;
             margin-top: $default-padding * 2;
@@ -15,10 +19,14 @@
                     margin-left: 40%;
                 }
             }
+            order: 0;
         }
         .slider .slider-slide ~ .flex-between {
             padding: 0px;
         }
+    }
+    main #form-wrapper {
+        width: 60%;
     }
     footer #info p {
         padding-left: 25%;
@@ -68,6 +76,13 @@
             #image-holder, p {
                 width: 100%;
             }
+            #about-us-text-flex {
+                width: 100%;
+                
+                p {
+                    margin-left: 0px;
+                }
+            }
             p {
                 @include padding-y($default-padding * 2);
             }
@@ -92,9 +107,23 @@
             display: none;
         }
     }
+    main #testimonials #statistics > div div {
+        width: 100%;
+        h3 {
+            @include padding-x($default-padding);
+            font-size: 1.4rem;
+        }
+        p {
+            @include padding-x($default-padding);
+            font-size: 1rem;
+        }
+        .stat-value {
+            font-size: 1.6rem;
+        }
+    }
     main #form-wrapper {
         font-size: 0.9rem;
-        width: 50%;
+        width: 80%;
         .form-input {
             &:nth-child(-n + 2) {
                 grid-column: 1 / 3;

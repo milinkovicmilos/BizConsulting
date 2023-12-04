@@ -38,7 +38,7 @@
 }
 
 .red {
-  color: red;
+  color: #a50000;
 }
 
 /* Slider */
@@ -63,7 +63,7 @@
 
 .slider-text-wrapper {
   position: absolute;
-  background-color: rgba(211, 211, 211, 0.75);
+  background-color: rgba(54, 140, 224, 0.6);
   width: 100%;
   height: 20%;
   top: 70%;
@@ -77,6 +77,7 @@
   text-align: center;
   width: 60%;
   font-size: clamp(1rem, 2vw, 1.4rem);
+  color: #e7f1fb;
 }
 
 .slide-inactive {
@@ -138,11 +139,37 @@ body h1, body h2, body h3, body h4 {
 body h1 {
   font-size: clamp(1.2rem, 2vw, 2rem);
 }
+body h1, body h2 {
+  color: #002f72;
+}
+body nav a {
+  color: #001a3f;
+  transition: color 0.5s;
+  position: relative;
+}
+body nav a:hover {
+  color: black;
+}
+body nav a:hover::after {
+  transform: scaleX(1);
+}
+body nav a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  background-color: #001a3f;
+  transition: transform 0.5s;
+}
+body header, body footer {
+  background-color: #bbd8f4;
+}
 
 header {
   position: relative;
   z-index: 2;
-  background-color: lightgray;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
@@ -218,18 +245,41 @@ main #about-us {
   width: 80%;
   margin: 0px auto;
 }
+main #about-us #services-holder {
+  align-items: stretch;
+}
 main #about-us h1 {
   font-size: clamp(1.2rem, 2vw, 2rem);
 }
 main #about-us h1 ~ .flex-between {
+  align-items: self-end;
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
+}
+main #about-us h1 ~ .flex-between #about-us-text-flex {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+}
+main #about-us h1 ~ .flex-between #about-us-text-flex p {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 0px 0px 25px 0px;
+  margin-left: 2rem;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+main #about-us h1 ~ .flex-between #about-us-text-flex p:last-child {
+  border-right: 2px solid #014393;
+  border-bottom: 2px solid #014393;
 }
 main #about-us h1 ~ .flex-between #image-holder {
   width: clamp(50px, 50%, 600px);
   height: 350px;
   margin: 0px auto;
-  border: 1px solid blue;
+  border: 1px solid #014393;
   border-radius: 25px;
   box-shadow: -1px 1px 1px 1px;
   background-position: top;
@@ -237,12 +287,12 @@ main #about-us h1 ~ .flex-between #image-holder {
   background-size: cover;
 }
 main #about-us h1 ~ .flex-between p {
-  width: 50%;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   line-height: 1.6rem;
   font-size: 1.2rem;
   text-align: justify;
+  color: #014393;
 }
 main #about-us h2 {
   font-size: clamp(1rem, 2vw, 1.5rem);
@@ -253,15 +303,19 @@ main #about-us h2 ~ div {
 }
 main #about-us h2 ~ div .services-element {
   width: 22.5%;
-  background-color: lightgray;
+  background-color: #62a5e7;
   border-radius: 25px;
   padding: 2rem;
+}
+main #about-us h2 ~ div .services-element h3 {
+  color: #001a3f;
 }
 main #about-us h2 ~ div .services-element p {
   font-size: clamp(1rem, 2vw, 1.2rem);
   width: 100%;
   text-align: justify;
   padding: 0px;
+  color: #001a3f;
 }
 main #about-us h2 ~ div i {
   display: block;
@@ -271,27 +325,41 @@ main #about-us h2 ~ div i {
 main #testimonials {
   width: 80%;
   margin: 0px auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 main #testimonials .flex-between {
   width: 100%;
+  align-items: self-end;
 }
-main #testimonials .flex-between > p {
-  width: 40%;
-  margin: 0px auto;
+main #testimonials .flex-between #testimonials-about-text {
+  width: 45%;
+}
+main #testimonials .flex-between #testimonials-about-text p {
+  width: 100%;
   text-align: justify;
   line-height: 1.6rem;
+  border-radius: 0px 0px 0px 25px;
+  padding: 0.75rem;
+  color: #014393;
+}
+main #testimonials .flex-between #testimonials-about-text p:last-child {
+  border-left: 2px solid #014393;
+  border-bottom: 2px solid #014393;
 }
 main #testimonials .flex-between .slider {
   position: relative;
   width: 50%;
   height: 250px;
-  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
   align-items: center;
   flex-direction: column;
-  background-color: lightblue;
+  background-color: #62a5e7;
+  outline: 1px solid #014393;
+  color: #001a3f;
+  box-shadow: 1px 1px 1px 1px;
   border-radius: 25px;
 }
 main #testimonials .flex-between .slider .slider-slide > .slider-grid {
@@ -314,7 +382,7 @@ main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimoni
 }
 main #testimonials .flex-between .slider .slider-slide > .slider-grid .testimonial-img-holder img {
   border-radius: 25px;
-  outline: 1px solid lightblue;
+  outline: 1px solid #001a3f;
   box-shadow: 1px 1px 1px 1px;
   max-width: 100%;
 }
@@ -340,9 +408,10 @@ main #testimonials .flex-between .slider .slider-slide ~ .flex-between {
   padding-left: 4.5rem;
 }
 main #testimonials #statistics {
-  background-color: lightblue;
+  background-color: #62a5e7;
   border-radius: 25px;
   width: 100%;
+  box-shadow: -1px 1px 1px 1px;
 }
 main #testimonials #statistics > div {
   width: 100%;
@@ -350,6 +419,7 @@ main #testimonials #statistics > div {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
+  align-items: stretch;
 }
 main #testimonials #statistics > div div {
   width: 30%;
@@ -365,11 +435,18 @@ main #testimonials #statistics > div div {
 main #testimonials #statistics > div div h3 {
   padding-top: 0px;
   font-size: 1.6rem;
+  color: #001a3f;
 }
 main #testimonials #statistics > div div .stat-value {
   font-size: 2.5rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+main #testimonials #statistics > div div p {
+  color: #001a3f;
+}
+main #contact-us {
+  margin-top: 0.75rem;
 }
 main #form-wrapper {
   width: 40%;
@@ -379,6 +456,13 @@ main #form-wrapper {
   -moz-column-gap: 0.75rem;
        column-gap: 0.75rem;
   row-gap: 0.9rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 25px;
+  background-color: #62a5e7;
+  outline: 1px solid #014393;
+  box-shadow: 1px 1px 1px 1px;
 }
 main #form-wrapper .form-input {
   position: relative;
@@ -388,7 +472,7 @@ main #form-wrapper .form-input input {
   margin-bottom: 0.75rem;
   width: 100%;
 }
-main #form-wrapper .form-input:nth-child(n+3):nth-child(-n+4), main #form-wrapper .form-input:last-child {
+main #form-wrapper .form-input:nth-child(n+3):nth-child(-n+4), main #form-wrapper .form-input:nth-child(n+7) {
   grid-column: 1/3;
 }
 main #form-wrapper .form-input input[type=submit] {
@@ -397,18 +481,43 @@ main #form-wrapper .form-input input[type=submit] {
   margin: 0px auto;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  background-color: #8ebfee;
+  border: 0px;
+  outline: 1px solid #001a3f;
+  border-radius: 25px;
+  transition: background-color 0.5s;
+}
+main #form-wrapper .form-input input[type=submit]:hover {
+  background-color: #368ce0;
+}
+main #form-wrapper .form-input input[type=submit]:active {
+  background-color: #185998;
 }
 main #form-wrapper .form-input input[type=text] {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+  border-radius: 25px;
+  outline: 0px;
+  border: 0px;
+  background-color: #bbd8f4;
 }
 main #form-wrapper .form-input .error-text {
   position: absolute;
   top: 65px;
   font-size: 0.8rem;
-  color: red;
+  color: #a50000;
+}
+main #form-wrapper .form-input input[type=checkbox] {
+  width: auto;
+  margin: 0px;
+  margin-left: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: #bbd8f4;
+}
+main #form-wrapper .form-input:nth-child(7) .error-text {
+  top: 25px;
 }
 main #form-wrapper #select-region {
   margin-top: 0.75rem;
@@ -418,6 +527,14 @@ main #form-wrapper #select-region {
   padding-bottom: 0.375rem;
   padding-left: 0.375rem;
   padding-right: 0.375rem;
+  background-color: #8ebfee;
+  border: 0px;
+  outline: 1px solid #001a3f;
+  border-radius: 5px;
+}
+main #form-wrapper #select-region option {
+  background-color: #8ebfee;
+  border-radius: 5px;
 }
 main #form-wrapper .radio-wrapper {
   display: flex;
@@ -473,6 +590,11 @@ footer {
 }
 footer i {
   font-size: 1.5rem;
+  color: #014393;
+  transition: color 0.5s;
+}
+footer i:hover {
+  color: black;
 }
 footer > .flex-between {
   margin: 0px auto;
@@ -499,6 +621,9 @@ footer #info p {
 footer #info p i {
   font-size: 1rem;
   margin-right: 5px;
+}
+footer #info i {
+  color: black;
 }
 footer #files {
   width: 20%;

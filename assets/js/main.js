@@ -69,7 +69,7 @@ const socialsNames = ["instagram", "facebook", "linkedin"];
 function formatSocials(socialsNames) {
     let socialsLinks = "";
     for (const social of socialsNames) {
-        socialsLinks += `<a href="www.${social}.com"><i class="fa-brands fa-${social}"></i></a>`;
+        socialsLinks += `<a href="https://www.${social}.com"><i class="fa-brands fa-${social}"></i></a>`;
     }
     document.querySelector("#socials-wrapper").innerHTML = socialsLinks;
 }
@@ -139,6 +139,12 @@ const formErrors = [
         "errorText" : "Please select your region",
         "regex" : "^(?!-1$)",
         "isVisible" : false
+    },
+    {
+        "formElementID" : "check-pp",
+        "errorText" : "Please accept our Privacy Policy to continue",
+        "regex" : "",
+        "isVisible" : false
     }
 ];
 //#endregion
@@ -170,6 +176,15 @@ function checkFormElement() {
     let formErrorObjs = getFormErrorObjs(this.id);
     for (const element of formErrorObjs) {
         let regex = new RegExp(element.regex);
+        // Check in case that form element is checkbox
+        if ($(this).attr("type") == "checkbox") {
+            if ($(this).is(':checked')) {
+                hideError(element);
+            } else {
+                showError(element);
+                return;
+            }
+        }
         if (regex.test(this.value)) {
             hideError(element);
         } else {
@@ -310,8 +325,14 @@ function fillAboutUs() {
             the way. With a commitment to excellence and a passion for helping businesses thrive, we offer 
             unparalleled consulting services tailored to meet your unique needs.
         </p>
+        <p>
+            Our commitment to excellence, integrity, and client satisfaction sets us 
+            apart in the world of business consulting. Whether you're a startup aiming 
+            for rapid growth, an established company seeking operational efficiency, or a 
+            business in transition, we are dedicated to guiding you towards success.
+        </p>
     `;
-    $("#about-us-text").append(textHTML);
+    $("#about-us-text-flex").append(textHTML);
 }
 
 const servicesIcons = ["bullseye", "arrow-trend-up", "comments-dollar", "bullhorn"];
@@ -328,7 +349,7 @@ function fillServices() {
         let servicesHolder = document.querySelector("#services-holder");
         let element = document.createElement("div");
         element.classList.add("services-element");
-        let elementHTML = `<i class="fa-solid fa-${servicesIcons[i]}"></i><h2>${servicesTitles[i]}</h2><p>${servicesTexts[i]}</p>`;
+        let elementHTML = `<i class="fa-solid fa-${servicesIcons[i]}"></i><h3>${servicesTitles[i]}</h3><p>${servicesTexts[i]}</p>`;
         element.innerHTML = elementHTML;
         servicesHolder.appendChild(element);
     }
@@ -415,6 +436,7 @@ window.addEventListener("load", function () {
     formatFooterLinks(navLinks);
     if ($("#about-us").length != 0) {
         fillServices();
+        // Calling jQuery plugin waypoints
         $(document).ready(() => {
             $('#services-holder').waypoint(() => {
                 if ($("#to-top-btn").is(":hidden")) $("#to-top-btn").fadeIn();
@@ -465,11 +487,11 @@ window.addEventListener("load", function () {
     }
 
     // Select all form elements
-    let formElements = document.querySelectorAll('input[type="text"], #select-region');
+    let formElements = document.querySelectorAll('input[type="text"], #select-region, #check-pp');
 
     // Add appropriate event listeners to them
     for (const element of formElements) {
-        element.addEventListener("blur", checkFormElement);
+        $(element).blur(checkFormElement);
     }
 
     // Make sure form is valid before submition
@@ -481,7 +503,7 @@ window.addEventListener("load", function () {
             // Fires blur event on every form element so 
             // that we can check if all form elements values are valid
             for (const element of formElements) {
-                element.dispatchEvent(new Event("blur"));
+                $(element).blur();
             }
     
             // After running checkFormElement for every form

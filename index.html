@@ -49,6 +49,7 @@
             <h1>Welcome to BizConsulting - Where Vision Meets Strategy!</h1>
             <div id="about-us-text" class="flex-between">
                 <div id="image-holder"></div>
+                <div id="about-us-text-flex"></div>
             </div>
             <h2>Our Services</h2>
             <div id="services-holder" class="flex-between"></div>
@@ -56,13 +57,21 @@
         <div id="testimonials">
             <h2>What people say about us</h2>
             <div class="flex-between">
-                <p>
-                    At BizConsulting, your success is our top priority. 
-                    We're not just consultants, we're partners on your 
-                    journey to greatness. Let's shape the future of your 
-                    business together - because when you succeed, we succeed. 
-                    Take a look at what our partners have to say for us!
-                </p>
+                <div id="testimonials-about-text">
+                    <p>
+                        With a commitment to client success, our seasoned professionals 
+                        collaborate closely with you, leveraging their extensive knowledge 
+                        and experience to turn challenges into opportunities and aspirations 
+                        into achievements.
+                    </p>
+                    <p>
+                        At BizConsulting, your success is our top priority. 
+                        We're not just consultants, we're partners on your 
+                        journey to greatness. Let's shape the future of your 
+                        business together - because when you succeed, we succeed. 
+                        Take a look at what our partners have to say for us!
+                    </p>
+                </div>
                 <div class="slider">
                     <div class="slider-slide">
                         <div class="slider-grid">
@@ -132,6 +141,10 @@
                             <input type="radio" name="meet-type" id="meet-type-online" value="1"/>
                             <label for="meet-type-online">Online meeting</label>
                         </div>
+                    </div>
+                    <div class="form-input">
+                        <label for="check-pp"><span class="red">* </span>I agree to the Privacy Policy</label>
+                        <input type="checkbox" name="privacy-policy" id="check-pp"/>
                     </div>
                     <div class="form-input">
                         <input type="submit" value="Submit"/>
