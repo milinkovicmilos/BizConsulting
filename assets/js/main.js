@@ -424,6 +424,10 @@ function fillTestimonials() {
         testimonialSlides[i].querySelector(".testimonial-name-holder").innerHTML = nameHTML;
     }
 }
+
+function openPrivacyPolicy() {
+    
+}
 //#endregion
 
 // jQuery plugin Counter-Up
@@ -495,18 +499,27 @@ window.addEventListener("load", function () {
 
     // Add appropriate event listeners to them
     for (const element of formElements) {
+        if ($(element).attr("type") == "checkbox") {
+            $(element).change(checkFormElement);
+            continue;
+        }
         $(element).blur(checkFormElement);
     }
 
     // Make sure form is valid before submition
     let form = document.querySelector("form");
     if (form != null) {
+        $('#privacy-policy').click(openPrivacyPolicy);
         form.addEventListener("submit", function (event) {
             event.preventDefault();
     
-            // Fires blur event on every form element so 
+            // Fires blur or change event on every form element so 
             // that we can check if all form elements values are valid
             for (const element of formElements) {
+                if ($(element).attr("type") == "checkbox") {
+                    $(element).change();
+                    continue;
+                }
                 $(element).blur();
             }
     
