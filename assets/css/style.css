@@ -216,7 +216,8 @@ header #header-container #nav-block {
   width: 0px;
   min-height: 100vh;
   transition: width 0.5s;
-  background-color: gray;
+  background-color: #8ebfee;
+  overflow-x: hidden;
 }
 header #header-container #nav-block ul {
   flex-wrap: wrap;
