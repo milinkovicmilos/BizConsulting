@@ -334,6 +334,37 @@ function fillServices() {
     }
 }
 
+const statsData = [
+    {
+        "statName" : "Average Revenue Growth",
+        "statValue" : "18",
+        "statDesc" : "Our clients experience an average annual revenue growth of 18%"
+    },
+    {
+        "statName" : "Implementation Success Rate",
+        "statValue" : "90",
+        "statDesc" : "Our practical approaches are made to be implemented seamlessly into your business"
+    },
+    {
+        "statName" : "Cost Savings Achieved",
+        "statValue" : "22",
+        "statDesc" : "Our clients, on average, experience 22% cost reduction thanks to our strategies"
+    }
+];
+function fillStatistics() {
+    let statHolder = document.createElement("div");
+    for (const element of statsData) {
+        let elementHTML = "";
+        elementHTML += `<h3>${element.statName}</h3>`;
+        elementHTML += `<p class="stat-value"><span class="counter">${element.statValue}</span>%</p>`;
+        elementHTML += `<p>${element.statDesc}</p>`;
+        let statElement = document.createElement("div");
+        statElement.innerHTML = elementHTML;
+        statHolder.appendChild(statElement);
+    }
+    document.querySelector("#statistics").appendChild(statHolder);
+}
+
 const testimonialsImgUrls = [
     "assets/img/testimonial-1.jpg", "assets/img/testimonial-2.jpg", 
     "assets/img/testimonial-3.jpg", "assets/img/testimonial-4.jpg",
@@ -374,15 +405,44 @@ function fillTestimonials() {
 }
 //#endregion
 
+// jQuery plugin Counter-Up
+const counterUp = window.counterUp.default;
+
 window.addEventListener("load", function () {
     // Dynamically writing out header and footer
     formatHeaderLinks(navLinks);
     formatSocials(socialsNames);
     formatFooterLinks(navLinks);
-    if ($("#about-us").length != 0) fillServices();
+    if ($("#about-us").length != 0) {
+        fillServices();
+        $(document).ready(() => {
+            $('#services-holder').waypoint(() => {
+                if ($("#to-top-btn").is(":hidden")) $("#to-top-btn").fadeIn();
+            }, {
+                offset: '100%' 
+            });
+            $('#about-us-text').waypoint(function () {
+                if ($("#to-top-btn").is(":visible")) $("#to-top-btn").fadeOut();
+            }, {
+                offset : '100%'
+            });
+        });
+    }
+    if ($("#statistics").length != 0) {
+        fillStatistics();
+        // jQuery plugin Counter-Up
+        let elements = $(".counter");
+        for (const el of elements) {
+            counterUp(el, {
+                duration: 1000,
+				delay: 10,
+            });
+        }
+    }
     if ($("#testimonials").length != 0) fillTestimonials();
     if ($("#about-us").length != 0) fillAboutUs();
-    
+    $("#to-top-btn").hide();
+
     let hamburger = document.querySelector("#hamburger");
     hamburger.addEventListener("click", openNav);
     
