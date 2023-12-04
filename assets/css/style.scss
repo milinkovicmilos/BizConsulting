@@ -107,7 +107,7 @@ main {
                 }
                 p {
                     width: 50%;
-                    padding-right: $default-padding;
+                    @include padding-x($default-padding);
                     line-height: 1.6rem;
                     font-size: 1.2rem;
                     text-align: justify;
@@ -279,9 +279,20 @@ footer {
     #info {
         width: 25%;
         font-size: 0.8rem;
+        p {
+            padding-left: 30%;
+            i {
+                font-size: 1rem;
+                margin-right: 5px;
+            }
+        }
     }
     #files {
-        width: 100px;
+        width: 20%;
+        a {
+            display: inline-block;
+            margin: 0px auto;
+        }
     }
     #footer-nav {
         width: 40%;
