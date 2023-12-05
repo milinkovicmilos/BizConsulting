@@ -511,7 +511,6 @@ window.addEventListener("load", function () {
             });
             $('#about-us-text').waypoint(function () {
                 if ($("#to-top-btn").is(":visible")) $("#to-top-btn").fadeOut();
-                console.log("skloni");
             });
         });
     }
