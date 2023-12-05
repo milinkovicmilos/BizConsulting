@@ -159,6 +159,7 @@ function getFormErrorObjs(formID) {
 
 function showError(formErrorObj) {
     if (!formErrorObj.isVisible) {
+        $(`#${formErrorObj.formElementID}`).css("outline", "1px solid darkred");
         let errorMessage = `<p class="error-text">${formErrorObj.errorText}</p>`;
         $(errorMessage).insertAfter($(`#${formErrorObj.formElementID}`));
         formErrorObj.isVisible = true;
@@ -167,6 +168,7 @@ function showError(formErrorObj) {
 
 function hideError(formErrorObj) {
     if (formErrorObj.isVisible) {
+        $(`#${formErrorObj.formElementID}`).css("outline", "none");
         $(`#${formErrorObj.formElementID} ~ p`).remove();
         formErrorObj.isVisible = false;
     }
@@ -304,8 +306,8 @@ const slidesTexts = [
     `Our consultants take the time to understand 
     your business intricately, ensuring 
     our recommendations fit seamlessly into your operations.`,
-    `Our track record speaks for 
-    itself, and we take pride in being a catalyst for positive change.`
+    `Success stories define us. Over the years, BizConsulting has played 
+    a pivotal role in the growth and success of numerous businesses.`
 ];
 
 function fillSlider(sliderObj) {
@@ -506,13 +508,10 @@ window.addEventListener("load", function () {
         $(document).ready(() => {
             $('#services-holder').waypoint(() => {
                 if ($("#to-top-btn").is(":hidden")) $("#to-top-btn").fadeIn();
-            }, {
-                offset: '100%' 
             });
             $('#about-us-text').waypoint(function () {
                 if ($("#to-top-btn").is(":visible")) $("#to-top-btn").fadeOut();
-            }, {
-                offset : '100%'
+                console.log("skloni");
             });
         });
     }
@@ -560,11 +559,12 @@ window.addEventListener("load", function () {
 
     // Add appropriate event listeners to them
     for (const element of formElements) {
-        if ($(element).attr("type") == "checkbox") {
+        let jQueryEl = $(element);
+        if (jQueryEl.attr("type") == "checkbox" || jQueryEl.prop("tagName") == "SELECT") {
             $(element).change(checkFormElement);
             continue;
         }
-        $(element).blur(checkFormElement);
+        jQueryEl.blur(checkFormElement);
     }
 
     // Make sure form is valid before submition
@@ -577,11 +577,12 @@ window.addEventListener("load", function () {
             // Fires blur or change event on every form element so 
             // that we can check if all form elements values are valid
             for (const element of formElements) {
-                if ($(element).attr("type") == "checkbox") {
-                    $(element).change();
+                let jQueryEl = $(element);
+                if (jQueryEl.attr("type") == "checkbox" || jQueryEl.prop("tagName") == "SELECT") {
+                    jQueryEl.change();
                     continue;
                 }
-                $(element).blur();
+                jQueryEl.blur();
             }
     
             // After running checkFormElement for every form

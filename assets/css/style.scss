@@ -263,6 +263,7 @@ main {
                     }
                     & ~ .flex-between {
                         width: auto;
+                        flex-wrap: nowrap;
                         align-items: center;
                         padding-left: $offset;
                     }
@@ -370,7 +371,7 @@ main {
             width: 50%;
             @include padding-y($default-padding/2);
             @include padding-x($default-padding/2);
-            background-color: lighten($tertiary-color, 20%);
+            background-color: lighten($bg-color, 5%);
             border: 0px;
             outline: 1px solid $main-color;
             border-radius: 5px;
@@ -448,8 +449,10 @@ footer {
     #info {
         width: 25%;
         font-size: 0.8rem;
-        p {
+        a {
+            color: $main-color;
             padding-left: 30%;
+            display: block;
             i {
                 font-size: 1rem;
                 margin-right: 5px;

@@ -6,7 +6,7 @@ $hamburger-menu-width: 60vw;
 $main-color: #001a3f;
 $secondary-color: #014393;
 $tertiary-color: #368ce0;
-$bg-color: lighten($tertiary-color, 10%);
+$bg-color: lighten($tertiary-color, 20%);
 /* Mixins */
 @mixin width-center($width) {
     width: $width;

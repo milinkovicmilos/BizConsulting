@@ -28,7 +28,7 @@
     main #form-wrapper {
         width: 60%;
     }
-    footer #info p {
+    footer #info a {
         padding-left: 25%;
     }
 }
@@ -40,7 +40,7 @@
             width: 47.5%;
         }
     }
-    footer #info p {
+    footer #info a {
         padding-left: 4%;
     }
 }
@@ -60,7 +60,7 @@
         #info {
             width: 50%;
             order: 2;
-            p {
+            a {
                 padding-left: 45%;
             }
         }
@@ -91,7 +91,7 @@
             width: 50%;
         }
     }
-    footer .flex-between #info p {
+    footer .flex-between #info a {
         padding-left: 25%;
     }
 }
@@ -179,7 +179,7 @@
         #info {
             margin: 0px auto;
             width: 100%;
-            p {
+            a {
                 padding-left: 25%;
             }
         }
@@ -225,7 +225,7 @@
     main #testimonials .flex-between > .slider .slider-slide ~ .flex-between {
         width: 100%;
     }
-    footer .flex-between #info p {
+    footer .flex-between #info a {
         padding-left: 15%;
     }
 }
