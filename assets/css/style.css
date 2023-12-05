@@ -129,10 +129,12 @@
 
 .slider-btn-left {
   left: 0px;
+  cursor: pointer;
 }
 
 .slider-btn-right {
   right: 0px;
+  cursor: pointer;
 }
 
 .slider-btn-left, .slider-btn-right {
